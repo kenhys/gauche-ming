@@ -1,0 +1,10 @@
+Makefile
+VERSION
+autom4te.cache/*
+*.log
+*.dll
+*.o
+*.status
+configure
+*.gpd
+makewin32.sh
