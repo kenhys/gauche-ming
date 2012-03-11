@@ -23,7 +23,7 @@ extern ScmObj test_gauche_ming(void);
 
 typedef struct ScmSWFMovieRec {
 SCM_HEADER;
-SWFMovie *h;
+SWFMovie h;
 } ScmSWFMovie;
 
 SCM_CLASS_DECL(Scm_SWFMovieClass);
