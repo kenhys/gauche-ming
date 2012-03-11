@@ -3,7 +3,7 @@
 ;;;
 
 (define-module ming
-  (export test-gauche_ming)
+  (export-all)
   )
 (select-module ming)
 
