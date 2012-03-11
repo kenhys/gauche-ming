@@ -37,6 +37,9 @@
 (define-cproc ming-get-scale () ::<real>
   (result (Ming_getScale)))
 
+(define-cproc ming-use-swf-version (version::<int>) ::<void>
+  (Ming_useSWFVersion version))
+
 ;; Local variables:
 ;; mode: scheme
 ;; end:
