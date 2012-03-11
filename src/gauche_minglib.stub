@@ -33,10 +33,10 @@
 (define-cproc ming-collect-garbage () ::<void>
   (Ming_collectGarbage))
 
-(define-cproc ming-use-constants (flag::<int>) ::<void>
+(define-cproc ming-use-constants (flag::<fixnum>) ::<void>
   (Ming_useConstants flag))
 
-(define-cproc ming-set-cubic-threshold (num::<int>) ::<void>
+(define-cproc ming-set-cubic-threshold (num::<fixnum>) ::<void>
   (Ming_setCubicThreshold num))
 
 (define-cproc ming-set-scale (scale::<real>) ::<void>
@@ -45,10 +45,10 @@
 (define-cproc ming-get-scale () ::<real>
   (result (Ming_getScale)))
 
-(define-cproc ming-use-swf-version (version::<int>) ::<void>
+(define-cproc ming-use-swf-version (version::<fixnum>) ::<void>
   (Ming_useSWFVersion version))
 
-(define-cproc ming-set-swf-compression (level::<int) ::<int>
+(define-cproc ming-set-swf-compression (level::<fixnum>) ::<int>
   (result (Ming_setSWFCompression level)))
 
 ;; Local variables:
