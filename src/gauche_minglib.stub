@@ -3,6 +3,7 @@
 ;;;
 
 "
+#include \"ming.h\"
 #include \"gauche_ming.h\"
 "
 
