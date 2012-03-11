@@ -18,6 +18,12 @@
     (set! (-> movie h) (newSWFMovie))
     (result movie)))
 
+(define-cproc swfmovie-set-dimension (movie::<swfmovie> x::<real> y::<real>) ::<void>
+  (SWFMovie_setDimension (-> movie h) x y))
+
+(define-cproc swfmovie-set-background (movie::<swfmovie> r::<real> g::<real> b::<real>) ::<void>
+  (SWFMovie_setBackground (-> movie h) r g b))
+
 (define-cproc swfmovie-next-frame (movie::<swfmovie>) ::<void>
   (SWFMovie_nextFrame (-> movie h)))
 
