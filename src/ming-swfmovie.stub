@@ -1,5 +1,11 @@
-
+;; -*- mode:scheme coding:utf-8 -*-
 "
 #include \"ming.h\"
 #include \"gauche_ming.h\"
 "
+
+(include "gauche-ming.types")
+
+(define-cproc swfmovie-write-exports
+  (movie::<swf-movie>) ::<void>
+  (SWFMovie_writeExports (* (-> movie h))))
