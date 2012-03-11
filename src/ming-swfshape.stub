@@ -1,0 +1,76 @@
+;; -*- mode:scheme; coding:utf-8 -*-
+
+"
+#include \"ming.h\"
+#include \"gauche_ming.h\"
+"
+
+(include "gauche-ming.types")
+
+(define-enum SWF_SHAPE1)
+(define-enum SWF_SHAPE2)
+(define-enum SWF_SHAPE3)
+(define-enum SWF_SHAPE4)
+
+(define-enum SWF_SHAPE_USESCALINGSTROKES)
+(define-enum SWF_SHAPE_USENONSCALINGSTROKES)
+
+(define-cproc new-swf-shape () ::<swf-shape>
+  (let* ((shape::ScmSWFShape* (SCM_NEW ScmSWFShape)))
+    (SCM_SET_CLASS shape SCM_CLASS_SWF_SHAPE)
+    (set! (-> shape h) (newSWFShape))
+    (result shape)))
+
+(define-cproc destroy-swf-shape (shape::<swf-shape>) ::<void>
+  (destroySWFShape (-> shape h)))
+
+(define-cproc swf-shape-end (shape::<swf-shape>) ::<void>
+  (SWFShape_end (-> shape h)))
+
+(define-cproc swf-shape-use-version (shape::<swf-shape> version::<fixnum>) ::<void>
+  (SWFShape_useVersion (-> shape h) version))
+
+(define-cproc swf-shape-get-version (shape::<swf-shape>) ::<fixnum>
+  (result (SWFShape_getVersion (-> shape h))))
+
+(define-cproc swf-shape-set-render-hinting-flags (shape::<swf-shape> flags::<fixnum>) ::<void>
+  (SWFShape_setRenderHintingFlags (-> shape h) flags))
+
+(define-cproc swf-shape-move-pen-to (shape::<swf-shape> x::<real> y::<real>) ::<void>
+  (SWFShape_movePenTo (-> shape h) x y))
+
+(define-cproc swf-shape-move-pen (shape::<swf-shape> x::<real> y::<real>) ::<void>
+  (SWFShape_movePen (-> shape h) x y))
+
+(define-cproc swf-shape-get-pen-x (shape::<swf-shape>) ::<real>
+  (result (SWFShape_getPenX (-> shape h))))
+
+(define-cproc swf-shape-get-pen-y (shape::<swf-shape>) ::<real>
+  (result (SWFShape_getPenY (-> shape h))))
+
+;;(define-cproc swf-shape-get-pen (shape::<swf-shape>) ::<real>
+;;  (result (SWFShape_getPenY (-> shape h))))
+
+(define-cproc swf-shape-draw-line-to (shape::<swf-shape> x::<real> y::<real>) ::<void>
+  (SWFShape_drawLineTo (-> shape h) x y))
+
+(define-cproc swf-shape-draw-line (shape::<swf-shape> x::<real> y::<real>) ::<void>
+  (SWFShape_drawLine (-> shape h) x y))
+
+(define-cproc swf-shape-draw-curve-to
+  (shape::<swf-shape> controlx::<real> controly::<real> anchorx::<real> anchory::<real>) ::<void>
+  (SWFShape_drawCurveTo (-> shape h) controlx controly anchorx anchory))
+
+(define-cproc swf-shape-draw-curve
+  (shape::<swf-shape> controlx::<real> controly::<real> anchorx::<real> anchory::<real>) ::<void>
+  (SWFShape_drawCurve (-> shape h) controlx controly anchorx anchory))
+
+(define-cproc swf-shape-hide-line
+  (shape::<swf-shape>) ::<void>
+  (SWFShape_hideLine (-> shape h)))
+
+;; (define-cproc swf-shape-add-solid-fill-style
+;;   (shape::<swf-shape> width::<fixnum> r g b a) ::<swf-fill-style>
+;;   (SWFShape_addSolidFillStyle (-> shape h) r g b a))
+
+
