@@ -20,3 +20,7 @@
 
 (define-cproc swfmovie-next-frame (movie::<swfmovie>) ::<void>
   (SWFMovie_nextFrame (* (-> movie h))))
+
+
+(define-cproc swfmovie-save (movie::<swfmovie> filename::<const-cstring>) ::<fixnum>
+  (result (SWFMovie_save (* (-> movie h)) filename)))
