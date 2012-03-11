@@ -18,6 +18,15 @@
     (set! (-> movie h) (newSWFMovie))
     (result movie)))
 
+(define-cproc new-swfmovie-with-version (version::<fixnum>) ::<swfmovie>
+  (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie)))
+    (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
+    (set! (-> movie h) (newSWFMovieWithVersion version))
+    (result movie)))
+
+(define-cproc destroy-swfmovie (movie::<swfmovie>) ::<void>
+  (destroySWFMovie (-> movie h)))
+
 (define-cproc swfmovie-set-dimension (movie::<swfmovie> x::<real> y::<real>) ::<void>
   (SWFMovie_setDimension (-> movie h) x y))
 
