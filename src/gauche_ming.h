@@ -8,6 +8,7 @@
 
 #include <gauche.h>
 #include <gauche/extend.h>
+#include <gauche/class.h>
 
 SCM_DECL_BEGIN
 
