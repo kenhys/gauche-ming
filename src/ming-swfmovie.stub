@@ -7,44 +7,44 @@
 
 (include "gauche-ming.types")
 
-(define-cproc swfmovie-write-exports
-  (movie::<swfmovie>) ::<void>
+(define-cproc swf-movie-write-exports
+  (movie::<swf-movie>) ::<void>
   (SWFMovie_writeExports (-> movie h)))
 
-(define-cproc new-swfmovie () ::<swfmovie>
+(define-cproc new-swf-movie () ::<swf-movie>
   (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie))
 	 )
     (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
     (set! (-> movie h) (newSWFMovie))
     (result movie)))
 
-(define-cproc new-swfmovie-with-version (version::<fixnum>) ::<swfmovie>
+(define-cproc new-swf-movie-with-version (version::<fixnum>) ::<swf-movie>
   (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie)))
     (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
     (set! (-> movie h) (newSWFMovieWithVersion version))
     (result movie)))
 
-(define-cproc destroy-swfmovie (movie::<swfmovie>) ::<void>
+(define-cproc destroy-swf-movie (movie::<swf-movie>) ::<void>
   (destroySWFMovie (-> movie h)))
 
-(define-cproc swfmovie-set-rate (movie::<swfmovie> rate::<real>) ::<void>
+(define-cproc swf-movie-set-rate (movie::<swf-movie> rate::<real>) ::<void>
   (SWFMovie_setRate (-> movie h) rate))
 
-(define-cproc swfmovie-get-rate (movie::<swfmovie>) ::<real>
+(define-cproc swf-movie-get-rate (movie::<swf-movie>) ::<real>
   (result (SWFMovie_getRate (-> movie h))))
 
-(define-cproc swfmovie-set-dimension (movie::<swfmovie> x::<real> y::<real>) ::<void>
+(define-cproc swf-movie-set-dimension (movie::<swf-movie> x::<real> y::<real>) ::<void>
   (SWFMovie_setDimension (-> movie h) x y))
 
-(define-cproc swfmovie-set-number-of-frames (movie::<swfmovie> frames::<fixnum>) ::<void>
+(define-cproc swf-movie-set-number-of-frames (movie::<swf-movie> frames::<fixnum>) ::<void>
   (SWFMovie_setNumberOfFrames (-> movie h) frames))
 
-(define-cproc swfmovie-set-background (movie::<swfmovie> r::<real> g::<real> b::<real>) ::<void>
+(define-cproc swf-movie-set-background (movie::<swf-movie> r::<real> g::<real> b::<real>) ::<void>
   (SWFMovie_setBackground (-> movie h) r g b))
 
-(define-cproc swfmovie-next-frame (movie::<swfmovie>) ::<void>
+(define-cproc swf-movie-next-frame (movie::<swf-movie>) ::<void>
   (SWFMovie_nextFrame (-> movie h)))
 
 
-(define-cproc swfmovie-save (movie::<swfmovie> filename::<const-cstring>) ::<fixnum>
+(define-cproc swf-movie-save (movie::<swf-movie> filename::<const-cstring>) ::<fixnum>
   (result (SWFMovie_save (-> movie h) filename)))

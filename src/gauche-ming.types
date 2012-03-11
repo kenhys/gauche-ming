@@ -1,6 +1,6 @@
 ;; -*- mode:scheme; coding:utf-8 -*-
 
-(define-type <swfmovie> "ScmSWFMovie*" #f
+(define-type <swf-movie> "ScmSWFMovie*" #f
   "SCM_SWF_MOVIE_P" "SCM_SWF_MOVIE")
 
 (define-type <swf-shape> "ScmSWFShape*" #f
