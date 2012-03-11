@@ -27,6 +27,12 @@
 (define-cproc destroy-swfmovie (movie::<swfmovie>) ::<void>
   (destroySWFMovie (-> movie h)))
 
+(define-cproc swfmovie-set-rate (movie::<swfmovie> rate::<real>) ::<void>
+  (SWFMovie_setRate (-> movie h) rate))
+
+(define-cproc swfmovie-get-rate (movie::<swfmovie>) ::<real>
+  (result (SWFMovie_getRate (-> movie h))))
+
 (define-cproc swfmovie-set-dimension (movie::<swfmovie> x::<real> y::<real>) ::<void>
   (SWFMovie_setDimension (-> movie h) x y))
 
