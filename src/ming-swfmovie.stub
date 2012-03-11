@@ -8,12 +8,15 @@
 (include "gauche-ming.types")
 
 (define-cproc swfmovie-write-exports
-  (movie::<swf-movie>) ::<void>
+  (movie::<swfmovie>) ::<void>
   (SWFMovie_writeExports (* (-> movie h))))
 
-(define-cproc new-swfmovie () ::<swf-movie>
+(define-cproc new-swfmovie () ::<swfmovie>
   (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie))
 	 )
     (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
     (set! (* (-> movie h)) (newSWFMovie))
     (result movie)))
+
+(define-cproc swfmovie-next-frame (movie::<swfmovie>) ::<void>
+  (SWFMovie_nextFrame (* (-> movie h))))
