@@ -13,7 +13,7 @@
 (define-cproc test-gauche_ming () ::<const-cstring>
   (result "gauche_ming is working"))
 
-(define-cclass <swf-movie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
+(define-cclass <swfmovie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
   ()
   ()
   [allocator
