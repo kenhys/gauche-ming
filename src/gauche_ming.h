@@ -9,6 +9,7 @@
 #include <gauche.h>
 #include <gauche/extend.h>
 #include <gauche/class.h>
+#include "ming.h"
 
 SCM_DECL_BEGIN
 
