@@ -21,6 +21,14 @@
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
 
+(define-cclass <swf-shape> :base "ScmSWFShape*" "Scm_SWFShapeClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFMovie* (SCM_ALLOCATE ScmSWFMovie klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
 ;;(define-enum MING_VERSION)
 ;;(define-constant MING_VERSION_TEXT (c "0.4.4"))
 

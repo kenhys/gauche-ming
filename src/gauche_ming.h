@@ -31,6 +31,16 @@ SCM_CLASS_DECL(Scm_SWFMovieClass);
 #define SCM_SWF_MOVIE(obj) ((ScmSWFMovie*)(obj))
 #define SCM_SWF_MOVIE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_MOVIE))
 
+typedef struct ScmSWFShapeRec {
+SCM_HEADER;
+SWFShape h;
+} ScmSWFShape;
+
+SCM_CLASS_DECL(Scm_SWFShapeClass);
+#define SCM_CLASS_SWF_SHAPE (&Scm_SWFShapeClass)
+#define SCM_SWF_SHAPE(obj) ((ScmSWFShape*)(obj))
+#define SCM_SWF_SHAPE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_SHAPE))
+
 
 /* Epilogue */
 SCM_DECL_END
