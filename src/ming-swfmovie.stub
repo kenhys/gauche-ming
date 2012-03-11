@@ -36,6 +36,9 @@
 (define-cproc swfmovie-set-dimension (movie::<swfmovie> x::<real> y::<real>) ::<void>
   (SWFMovie_setDimension (-> movie h) x y))
 
+(define-cproc swfmovie-set-number-of-frames (movie::<swfmovie> frames::<fixnum>) ::<void>
+  (SWFMovie_setNumberOfFrames (-> movie h) frames))
+
 (define-cproc swfmovie-set-background (movie::<swfmovie> r::<real> g::<real> b::<real>) ::<void>
   (SWFMovie_setBackground (-> movie h) r g b))
 
