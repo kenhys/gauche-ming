@@ -1,4 +1,5 @@
-;; -*- mode:scheme coding:utf-8 -*-
+;; -*- mode:scheme; coding:utf-8 -*-
+
 "
 #include \"ming.h\"
 #include \"gauche_ming.h\"
@@ -9,3 +10,10 @@
 (define-cproc swfmovie-write-exports
   (movie::<swf-movie>) ::<void>
   (SWFMovie_writeExports (* (-> movie h))))
+
+(define-cproc new-swfmovie () ::<swf-movie>
+  (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie))
+	 )
+    (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
+    (set! (* (-> movie h)) (newSWFMovie))
+    (result movie)))
