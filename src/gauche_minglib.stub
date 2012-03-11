@@ -13,6 +13,14 @@
 (define-cproc test-gauche_ming () ::<const-cstring>
   (result "gauche_ming is working"))
 
+(define-cclass <swf-movie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFMovie* (SCM_ALLOCATE ScmSWFMovie klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
 ;;(define-enum MING_VERSION)
 ;;(define-constant MING_VERSION_TEXT (c "0.4.4"))
 
