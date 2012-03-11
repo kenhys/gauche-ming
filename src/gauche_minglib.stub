@@ -13,6 +13,29 @@
 (define-cproc test-gauche_ming () ::<const-cstring>
   (result "gauche_ming is working"))
 
+;;(define-enum MING_VERSION)
+;;(define-constant MING_VERSION_TEXT (c "0.4.4"))
+
+(define-cproc ming-init () ::<int>
+  (result Ming_init))
+
+(define-cproc ming-cleanup () ::<void>
+  (Ming_cleanup))
+
+(define-cproc ming-collect-garbage () ::<void>
+  (Ming_collectGarbage))
+
+(define-cproc ming-use-constants (flag::<int>) ::<void>
+  (Ming_useConstants flag))
+
+(define-cproc ming-set-cubic-threshold (num::<int>) ::<void>
+  (Ming_setCubicThreshold num))
+
+(define-cproc ming-set-scale (scale::<real>) ::<void>
+  (Ming_setScale scale))
+
+(define-cproc ming-get-scale () ::<real>
+  (result (Ming_getScale)))
 
 ;; Local variables:
 ;; mode: scheme
