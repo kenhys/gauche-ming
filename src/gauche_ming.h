@@ -26,7 +26,7 @@ SWFMovie *h;
 } ScmSWFMovie;
 
 SCM_CLASS_DECL(Scm_SWFMovieClass);
-#define SCM_CLASS_HPDF_FONT (&Scm_SWFMovieClass)
+#define SCM_CLASS_SWF_MOVIE (&Scm_SWFMovieClass)
 #define SCM_SWF_MOVIE(obj) ((ScmSWFMovie*)(obj))
 #define SCM_SWF_MOVIE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_MOVIE))
 
