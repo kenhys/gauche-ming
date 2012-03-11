@@ -9,18 +9,18 @@
 
 (define-cproc swfmovie-write-exports
   (movie::<swfmovie>) ::<void>
-  (SWFMovie_writeExports (* (-> movie h))))
+  (SWFMovie_writeExports (-> movie h)))
 
 (define-cproc new-swfmovie () ::<swfmovie>
   (let* ((movie::ScmSWFMovie* (SCM_NEW ScmSWFMovie))
 	 )
     (SCM_SET_CLASS movie SCM_CLASS_SWF_MOVIE)
-    (set! (* (-> movie h)) (newSWFMovie))
+    (set! (-> movie h) (newSWFMovie))
     (result movie)))
 
 (define-cproc swfmovie-next-frame (movie::<swfmovie>) ::<void>
-  (SWFMovie_nextFrame (* (-> movie h))))
+  (SWFMovie_nextFrame (-> movie h)))
 
 
 (define-cproc swfmovie-save (movie::<swfmovie> filename::<const-cstring>) ::<fixnum>
-  (result (SWFMovie_save (* (-> movie h)) filename)))
+  (result (SWFMovie_save (-> movie h) filename)))
