@@ -18,6 +18,7 @@ ScmObj test_gauche_ming(void)
  * Module initialization function.
  */
 extern void Scm_Init_gauche_minglib(ScmModule*);
+extern void Scm_Init_ming_swfmovie(ScmModule*);
 
 void Scm_Init_gauche_ming(void)
 {
@@ -31,4 +32,5 @@ void Scm_Init_gauche_ming(void)
 
     /* Register stub-generated procedures */
     Scm_Init_gauche_minglib(mod);
+    Scm_Init_ming_swfmovie(mod);
 }
