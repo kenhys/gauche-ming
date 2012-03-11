@@ -40,6 +40,9 @@
 (define-cproc ming-use-swf-version (version::<int>) ::<void>
   (Ming_useSWFVersion version))
 
+(define-cproc ming-set-swf-compression (level::<int) ::<int>
+  (result (Ming_setSWFCompression level)))
+
 ;; Local variables:
 ;; mode: scheme
 ;; end:
