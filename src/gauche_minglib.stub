@@ -25,9 +25,26 @@
   ()
   ()
   [allocator
-   (let* ([ctx::ScmSWFMovie* (SCM_ALLOCATE ScmSWFMovie klass)])
+   (let* ([ctx::ScmSWFShape* (SCM_ALLOCATE ScmSWFShape klass)])
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-font> :base "ScmSWFFont*" "Scm_SWFFontClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFFont* (SCM_ALLOCATE ScmSWFFont klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-text> :base "ScmSWFText*" "Scm_SWFTextClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFText* (SCM_ALLOCATE ScmSWFText klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
 
 ;;(define-enum MING_VERSION)
 ;;(define-constant MING_VERSION_TEXT (c "0.4.4"))

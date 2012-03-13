@@ -20,6 +20,8 @@ ScmObj test_gauche_ming(void)
 extern void Scm_Init_gauche_minglib(ScmModule*);
 extern void Scm_Init_ming_swfmovie(ScmModule*);
 extern void Scm_Init_ming_swfshape(ScmModule*);
+extern void Scm_Init_ming_swftext(ScmModule*);
+extern void Scm_Init_ming_swffont(ScmModule*);
 
 void Scm_Init_gauche_ming(void)
 {
@@ -35,4 +37,6 @@ void Scm_Init_gauche_ming(void)
     Scm_Init_gauche_minglib(mod);
     Scm_Init_ming_swfmovie(mod);
     Scm_Init_ming_swfshape(mod);
+    Scm_Init_ming_swftext(mod);
+    Scm_Init_ming_swffont(mod);
 }

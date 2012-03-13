@@ -41,6 +41,27 @@ SCM_CLASS_DECL(Scm_SWFShapeClass);
 #define SCM_SWF_SHAPE(obj) ((ScmSWFShape*)(obj))
 #define SCM_SWF_SHAPE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_SHAPE))
 
+typedef struct ScmSWFTextRec {
+SCM_HEADER;
+SWFText h;
+} ScmSWFText;
+
+SCM_CLASS_DECL(Scm_SWFTextClass);
+#define SCM_CLASS_SWF_TEXT (&Scm_SWFTextClass)
+#define SCM_SWF_TEXT(obj) ((ScmSWFText*)(obj))
+#define SCM_SWF_TEXT_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_TEXT))
+
+typedef struct ScmSWFFontRec {
+SCM_HEADER;
+SWFFont h;
+} ScmSWFFont;
+
+SCM_CLASS_DECL(Scm_SWFFontClass);
+#define SCM_CLASS_SWF_FONT (&Scm_SWFFontClass)
+#define SCM_SWF_FONT(obj) ((ScmSWFFont*)(obj))
+#define SCM_SWF_FONT_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_FONT))
+
+
 
 /* Epilogue */
 SCM_DECL_END

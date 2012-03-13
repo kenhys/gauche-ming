@@ -5,3 +5,9 @@
 
 (define-type <swf-shape> "ScmSWFShape*" #f
   "SCM_SWF_SHAPE_P" "SCM_SWF_SHAPE")
+
+(define-type <swf-text> "ScmSWFText*" #f
+  "SCM_SWF_TEXT_P" "SCM_SWF_TEXT")
+
+(define-type <swf-font> "ScmSWFFont*" #f
+  "SCM_SWF_FONT_P" "SCM_SWF_FONT")
