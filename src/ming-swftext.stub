@@ -1,0 +1,70 @@
+;; -*- mode:scheme; coding:utf-8 -*-
+
+"
+#include \"ming.h\"
+#include \"gauche_ming.h\"
+"
+
+(include "gauche-ming.types")
+
+(define-cproc new-swf-text () ::<swf-text>
+  (let* ((text::ScmSWFText* (SCM_NEW ScmSWFText)))
+    (SCM_SET_CLASS text SCM_CLASS_SWF_MOVIE)
+    (set! (-> text h) (newSWFText))
+    (result text)))
+
+(define-cproc new-swf-text2 () ::<swf-text>
+  (let* ((text::ScmSWFText* (SCM_NEW ScmSWFText)))
+    (SCM_SET_CLASS text SCM_CLASS_SWF_MOVIE)
+    (set! (-> text h) (newSWFText2))
+    (result text)))
+
+(define-cproc destroy-swf-text (text::<swf-text>) ::<void>
+  (destroySWFText (-> text h)))
+
+(define-cproc swf-text-set-font (text::<swf-text> font::<swf-font>) ::<void>
+  (SWFText_setFont (-> text h) (-> font h)))
+
+(define-cproc swf-text-set-height (text::<swf-text> height::<float>) ::<void>
+  (SWFText_setHeight (-> text h) height))
+
+(define-cproc swf-text-set-color (text::<swf-text> r::<real> g::<real> b::<real> a::<real>) ::<void>
+  (SWFText_setColor (-> text h) r g b a))
+
+(define-cproc swf-text-move-to (text::<swf-text> x::<real> y::<real>) ::<void>
+  (SWFText_moveTo (-> text h) x y))
+
+(define-cproc swf-text-add-string (text::<swf-text> string::<const-cstring>) ::<fixnum>
+  (let* ()
+    (SWFText_addString (-> text h) string NULL)))
+
+(define-cproc swf-text-add-utf8-string (text::<swf-text> string::<const-cstring>) ::<fixnum>
+  (let* ()
+    (SWFText_addUTF8String (-> text h) string NULL)))
+
+(define-cproc swf-text-add-wide-string (text::<swf-text> string::<const-cstring> len::<fixnum>) ::<fixnum>
+  (let* ()
+    (SWFText_addWideString (-> text h) string len NULL)))
+
+(define-cproc swf-text-set-spacing (text::<swf-text> spacing::<float>) ::<void>
+  (SWFText_setSpacing (-> text h) spacing))
+
+(define-cproc swf-text-get-string-width (text::<swf-text> string::<const-cstring>) ::<float>
+  (result (SWFText_getStringWidth (-> text h) string)))
+
+(define-cproc swf-text-get-utf8-string-width (text::<swf-text> string::<const-cstring>) ::<float>
+  (result (SWFText_getUTF8StringWidth (-> text h) string)))
+
+(define-cproc swf-text-get-wide-string-width (text::<swf-text> string::<const-cstring>) ::<float>
+  (result (SWFText_getWideStringWidth (-> text h) string)))
+
+(define-cproc swf-text-get-ascent (text::<swf-text>) ::<float>
+  (result (SWFText_getAscent (-> text h))))
+
+(define-cproc swf-text-get-descent (text::<swf-text>) ::<float>
+  (result (SWFText_getDescent (-> text h))))
+
+(define-cproc swf-text-get-leading (text::<swf-text>) ::<float>
+  (result (SWFText_getLeading (-> text h))))
+
+
