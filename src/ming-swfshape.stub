@@ -7,6 +7,9 @@
 
 (include "gauche-ming.types")
 
+"typedef unsigned char byte;"
+
+
 (define-enum SWF_SHAPE1)
 (define-enum SWF_SHAPE2)
 (define-enum SWF_SHAPE3)
@@ -73,4 +76,74 @@
 ;;   (shape::<swf-shape> width::<fixnum> r g b a) ::<swf-fill-style>
 ;;   (SWFShape_addSolidFillStyle (-> shape h) r g b a))
 
+;; shape_util.h
+
+(define-cproc swf-shape-set-line
+  (shape::<swf-shape> width::<ushort> r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<void>
+  (SWFShape_setLine (-> shape h) width r g b a))
+
+(define-cproc swf-shape-set-line2
+  (shape::<swf-shape> 
+   width::<ushort> r::<uint8> g::<uint8> b::<uint8> a::<uint8>
+   fill::<swf-fill-style> flags::<int> miterLimit::<float>) ::<void>
+   (SWFShape_setLine (-> shape h) width r g b a (-> fill h) flags miterLimit))
+
+(define-cproc swf-shape-add-solid-fill-style
+  (shape::<swf-shape> r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<swf-fill>
+  (result SWFShape_addSolidFillStyle (-> shape h) r g b a))
+
+(define-cproc swf-shape-add-gradient-fill
+  (shape::<swf-shape> gradient::<swf-gradient> flags::<uint8>) ::<swf-fill>
+  (result (SWFShape_addGradientFill (-> shape h) (-> gradient h) flags)))
+
+(define-cproc swf-shape-add-bitmap-fill
+  (shape::<swf-shape> bitmap::<swf-bitmap> flags::<uint8>) ::<swf-fill>
+  (result (SWFShape_addBitmapFill (-> shape h) (-> bitmap h) flags)))
+
+(define-cproc swf-shape-set-left-fill
+  (shape::<swf-shape> fill::<swf-fill>) ::<void>
+  (SWFShape_setLeftFill (-> shape h) (-> fill h)))
+
+(define-cproc swf-shape-set-right-fill
+  (shape::<swf-shape> fill::<swf-fill>) ::<void>
+  (SWFShape_setRightFill (-> shape h) (-> fill h)))
+
+(define-cproc swf-shape-draw-arc
+  (shape::<swf-shape>
+   r::<double> startAngle::<double> endAngle::<double>) ::<void>
+   (SWFShape_drawArc (-> shape h) r startAngle endAngle))
+
+(define-cproc swf-shape-draw-circle
+  (shape::<swf-shape> r::<double>) ::<void>
+  (SWFShape_drawCircle (-> shape h) r))
+
+/* draw character c from font font into shape shape at size size */
+(define-cprocswf-shape-draw-glyph
+  (shape::<swf-shape> font::<swf-font> c::<ushort>)
+  (SWFShape_drawGlyph (-> shape h) (-> font h) c))
+
+(define-cproc swf-shape-draw-sized-glyph
+  (shape::<swf-shape> font::<swf-font> c::<ushort> size::<int>) ::<void>
+  (SWFShape_drawSizedGlyph (-> shape h) (-> font h) c size))
+
+  /* Deprecated: */
+  #define SWFShape_drawFontGlyph(s,f,c) SWFShape_drawGlyph(s,f,c)
+
+/* approximate a cubic bezier with quadratic segments */
+/* returns the number of segments used */
+(define-cproc swf-shape-draw-cubic
+  (shape::<swf-shape>
+   bx::<double> by::<double> cx::<double> cy::<double> dx::<double>
+   dy::<double>) ::<int>
+   (result (SWFShape_drawCubic (-> shape h) bx by cx cy dx dy)))
+
+(define-cproc swf-shape-draw-cubic-to
+  (shape::<swf-shape>
+   bx::<double> by::<double> cx::<double> cy::<double> dx::<double>
+   dy::<double>) ::<int>
+   (result (SWFShape_drawCubic (-> shape h) bx by cx cy dx dy)))
+
+(define-cproc swf-shape-draw-character-bounds
+  (shape::<swf-shape> character::<swf-character>) ::<void>
+  (SWFShape_drawCharacterBounds (-> shape h) (-> character h)))
 
