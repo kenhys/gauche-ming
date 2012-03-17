@@ -13,7 +13,7 @@
 (define-cproc test-gauche_ming () ::<const-cstring>
   (result "gauche_ming is working"))
 
-(define-cclass <swfmovie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
+(define-cclass <swf-movie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
   ()
   ()
   [allocator
@@ -42,6 +42,22 @@
   ()
   [allocator
    (let* ([ctx::ScmSWFText* (SCM_ALLOCATE ScmSWFText klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-display-item> :base "ScmSWFDisplayItem*" "Scm_SWFDisplayItemClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFDisplayItem* (SCM_ALLOCATE ScmSWFDisplayItem klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-character> :base "ScmSWFCharacter*" "Scm_SWFCharacterClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFCharacter* (SCM_ALLOCATE ScmSWFCharacter klass)])
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
 

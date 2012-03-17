@@ -20,6 +20,8 @@ SCM_DECL_BEGIN
 
 extern ScmObj test_gauche_ming(void);
 
+#define SCM_BYTE(obj) ((unsigned char)(obj))
+#define SCM_BYTE_P(obj) true
 
 typedef struct ScmSWFMovieRec {
 SCM_HEADER;
@@ -60,6 +62,26 @@ SCM_CLASS_DECL(Scm_SWFFontClass);
 #define SCM_CLASS_SWF_FONT (&Scm_SWFFontClass)
 #define SCM_SWF_FONT(obj) ((ScmSWFFont*)(obj))
 #define SCM_SWF_FONT_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_FONT))
+
+typedef struct ScmSWFDisplayItemRec {
+SCM_HEADER;
+SWFDisplayItem h;
+} ScmSWFDisplayItem;
+
+SCM_CLASS_DECL(Scm_SWFDisplayItemClass);
+#define SCM_CLASS_SWF_DISPLAY_ITEM (&Scm_SWFDisplayItemClass)
+#define SCM_SWF_DISPLAY_ITEM(obj) ((ScmSWFDisplayItem*)(obj))
+#define SCM_SWF_DISPLAY_ITEM_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_DISPLAY_ITEM))
+
+typedef struct ScmSWFCharacterRec {
+SCM_HEADER;
+SWFCharacter h;
+} ScmSWFCharacter;
+
+SCM_CLASS_DECL(Scm_SWFCharacterClass);
+#define SCM_CLASS_SWF_CHARACTER (&Scm_SWFCharacterClass)
+#define SCM_SWF_CHARACTER(obj) ((ScmSWFCharacter*)(obj))
+#define SCM_SWF_CHARACTER_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_CHARACTER))
 
 
 

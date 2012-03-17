@@ -1,5 +1,9 @@
 ;; -*- mode:scheme; coding:utf-8 -*-
 
+(define-type <byte> "unsigned char" #f
+  "SCM_BYTE_P" "SCM_BYTE")
+
+
 (define-type <swf-movie> "ScmSWFMovie*" #f
   "SCM_SWF_MOVIE_P" "SCM_SWF_MOVIE")
 
@@ -11,3 +15,9 @@
 
 (define-type <swf-font> "ScmSWFFont*" #f
   "SCM_SWF_FONT_P" "SCM_SWF_FONT")
+
+(define-type <swf-display-item> "ScmSWFDisplayItem*" #f
+  "SCM_SWF_DISPLAY_ITEM_P" "SCM_SWF_DISPLAY_ITEM")
+
+(define-type <swf-character> "ScmSWFCharacter*" #f
+  "SCM_SWF_CHARACTER_P" "SCM_SWF_CHARACTER")
