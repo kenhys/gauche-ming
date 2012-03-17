@@ -3,8 +3,10 @@
 ;;;
 
 (define-module ming
-  (export-all)
-  )
+  (extend 
+   ming.swfmovie
+   )
+  (export-all))
 (select-module ming)
 
 ;; Loads extension
