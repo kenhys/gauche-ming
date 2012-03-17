@@ -44,10 +44,25 @@ GAUCHE_PKGARCHDIR = "$(DESTDIR)@GAUCHE_PKGARCHDIR@"
 
 gauche_ming_SRCS = gauche_ming.c \
 gauche_minglib.stub \
+ming-swfaction.stub \
+ming-swfbutton.stub \
+ming-swfdisplayitem.stub \
+ming-swffill.stub \
+ming-swffillstyle.stub \
+ming-swffillter.stub \
+ming-swffont.stub \
+ming-swflinestyle.stub \
 ming-swfmovie.stub \
+ming-swfmovieclip.stub \
+ming-swfmorph.stub \
+ming-swfposition.stub \
 ming-swfshape.stub \
+ming-swfsound.stub \
+ming-swfsprite.stub \
 ming-swftext.stub \
-ming-swffont.stub
+ming-swftextfield.stub \
+ming-swfvideo.stub
+
 
 all : $(ARCHFILES)
 
