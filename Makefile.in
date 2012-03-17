@@ -60,6 +60,7 @@ uninstall :
 	$(INSTALL) -U $(GAUCHE_PKGLIBDIR)/.packages $(PACKAGE).gpd
 
 clean :
+	cd src; $(MAKE) clean
 	$(GAUCHE_PACKAGE) compile --clean gauche_ming $(gauche_ming_SRCS)
 	rm -rf core $(TARGET) $(GENERATED) *~ test.log so_locations
 
