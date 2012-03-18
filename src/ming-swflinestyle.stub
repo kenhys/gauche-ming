@@ -1,0 +1,42 @@
+;; -*- mode:scheme; coding:utf-8 -*-
+
+"
+#include \"ming.h\"
+#include \"gauche_ming.h\"
+"
+
+(include "gauche-ming.types")
+
+(define-enum  SWFFILL_SOLID)
+(define-enum  SWFFILL_GRADIENT)
+(define-enum  SWFFILL_LINEAR_GRADIENT)
+(define-enum  SWFFILL_RADIAL_GRADIENT)
+(define-enum  SWFFILL_FOCAL_GRADIENT)
+(define-enum  SWFFILL_BITMAP)
+(define-enum  SWFFILL_TILED_BITMAP)
+(define-enum  SWFFILL_CLIPPED_BITMAP)
+(define-enum  SWFFILL_NONSMOOTHED_TILED_BITMAP)
+(define-enum  SWFFILL_NONSMOOTHED_CLIPPED_BITMAP)
+
+
+(define-cproc new-swf-solid-fill-style
+  (r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<swf-fill-style>
+  (result (newSWFSolidFillStyle r g b a)))
+
+(define-cproc new-swf-gradient-fill-style
+  (gradient::<swf-gradient> radial::<uint8>) ::<swf-fill-style>
+  (result (newSWFGradientFillStyle (-> gradient h) radial)))
+
+(define-cproc new-swf-bitmap-fill-style
+  (bitmap::<swf-character> flags::<uint8>) ::<swf-fill-style>
+  (result (newSWFBitmapFillStyle (-> bitmap h) flags)))
+
+(define-cproc swf-fill-style-get-matrix
+  (fill::<swf-fill-style>) ::<swf-matrix>
+  (result (SWFFillStyle_getMatrix (-> fill h))))
+
+(define-cproc destroy-swf-fill-style
+  (fill::<swf-fill-style>) ::<void>
+  (destroySWFFillStyle (-> fill h)))
+
+

@@ -1,0 +1,113 @@
+;; -*- mode:scheme; coding:utf-8 -*-
+
+"
+#include \"ming.h\"
+#include \"gauche_ming.h\"
+"
+
+(include "gauche-ming.types")
+
+
+(define-cproc swf-display-item-get-character
+  (item::<swf-display-item>) ::<swf-character>
+  (result (SWFDisplayItem_getCharacter (-> item h))))
+
+(define-cproc swf-display-item-end-mask
+  (item::<swf-display-item>) ::<void>
+  (SWFDisplayItem_endMask (-> item h)))
+
+(define-cproc swf-display-item-move 
+  (item::<swf-display-item> x::<real> y::<real>) ::<void>
+  (SWFDisplayItem_move (-> item h) x y))
+
+;; void SWFDisplayItem_moveTo(SWFDisplayItem item, double x, double y);
+;; void SWFDisplayItem_rotate(SWFDisplayItem item, double degrees);
+;; void SWFDisplayItem_rotateTo(SWFDisplayItem item, double degrees);
+;; void SWFDisplayItem_scale(SWFDisplayItem item, double xScale, double yScale);
+;; void SWFDisplayItem_scaleTo(SWFDisplayItem item, double xScale, double yScale);
+;; void SWFDisplayItem_skewX(SWFDisplayItem item, double x);
+;; void SWFDisplayItem_skewXTo(SWFDisplayItem item, double x);
+;; void SWFDisplayItem_skewY(SWFDisplayItem item, double y);
+;; void SWFDisplayItem_skewYTo(SWFDisplayItem item, double y);
+
+;; void SWFDisplayItem_getPosition(SWFDisplayItem item, double * x, double * y);
+;; void SWFDisplayItem_getRotation(SWFDisplayItem item, double * degrees);
+;; void SWFDisplayItem_getScale(SWFDisplayItem item, double * xScale, double * yScale);
+;; void SWFDisplayItem_getSkew(SWFDisplayItem item, double * xSkew, double * ySkew);
+
+;; SWFMatrix SWFDisplayItem_getMatrix(SWFDisplayItem item);
+;; void SWFDisplayItem_setMatrix(SWFDisplayItem i, double a, double b,
+;; 			      double c, double d, double x, double y);
+
+;; int SWFDisplayItem_getDepth(SWFDisplayItem item);
+;; void SWFDisplayItem_setDepth(SWFDisplayItem item, int depth);
+;; void SWFDisplayItem_remove(SWFDisplayItem item);
+;; void SWFDisplayItem_setName(SWFDisplayItem item, const char *name);
+;; void SWFDisplayItem_setMaskLevel(SWFDisplayItem item, int masklevel);
+;; void SWFDisplayItem_setRatio(SWFDisplayItem item, float ratio);
+;; void SWFDisplayItem_setCXform(SWFDisplayItem item, SWFCXform cXform);
+;; void SWFDisplayItem_setColorAdd(SWFDisplayItem item,
+;; 				int r, int g, int b, int a);
+;; void SWFDisplayItem_setColorMult(SWFDisplayItem item,
+;; 				 float r, float g, float b, float a);
+
+;; void SWFDisplayItem_flush(SWFDisplayItem item);
+
+;; #define SWFDisplayItem_addColor SWFDisplayItem_setColorAdd
+;; #define SWFDisplayItem_multColor SWFDisplayItem_setColorMult
+
+(define-enum SWFACTION_ONLOAD)
+(define-enum SWFACTION_ENTERFRAME)
+(define-enum SWFACTION_UNLOAD)
+(define-enum SWFACTION_MOUSEMOVE)
+(define-enum SWFACTION_MOUSEDOWN)
+(define-enum SWFACTION_MOUSEUP)
+(define-enum SWFACTION_KEYDOWN)
+(define-enum SWFACTION_KEYUP)
+(define-enum SWFACTION_DATA)
+(define-enum SWFACTION_INIT)
+(define-enum SWFACTION_PRESS)
+(define-enum SWFACTION_RELEASE)
+(define-enum SWFACTION_RELEASEOUTSIDE)
+(define-enum SWFACTION_ROLLOVER)
+(define-enum SWFACTION_ROLLOUT)
+(define-enum SWFACTION_DRAGOVER)
+(define-enum SWFACTION_DRAGOUT)
+(define-enum SWFACTION_KEYPRESS)
+(define-enum SWFACTION_CONSTRUCT)
+
+;; void SWFDisplayItem_addAction(SWFDisplayItem item, SWFAction action, int flags);
+
+;; void SWFDisplayItem_cacheAsBitmap(SWFDisplayItem item, int flag);
+
+(define-enum SWFBLEND_MODE_NULL)
+(define-enum SWFBLEND_MODE_NORMAL)
+(define-enum SWFBLEND_MODE_LAYER)
+(define-enum SWFBLEND_MODE_MULT)
+(define-enum SWFBLEND_MODE_SCREEN)
+(define-enum SWFBLEND_MODE_LIGHTEN)
+(define-enum SWFBLEND_MODE_DARKEN)
+(define-enum SWFBLEND_MODE_DIFF)
+(define-enum SWFBLEND_MODE_ADD)
+(define-enum SWFBLEND_MODE_SUB)
+(define-enum SWFBLEND_MODE_INV)
+(define-enum SWFBLEND_MODE_ALPHA)
+(define-enum SWFBLEND_MODE_ERASE)
+(define-enum SWFBLEND_MODE_OVERLAY)
+(define-enum SWFBLEND_MODE_HARDLIGHT)
+
+;; void SWFDisplayItem_setBlendMode(SWFDisplayItem item, int mode);
+;; void SWFDisplayItem_addFilter(SWFDisplayItem item, SWFFilter filter);
+
+
+
+(define-cproc swf-font-get-ascent (font::<swf-font>) ::<float>
+  (result (SWFFont_getAscent (-> font h))))
+
+(define-cproc swf-font-get-descent (font::<swf-font>) ::<float>
+  (result (SWFFont_getDescent (-> font h))))
+
+(define-cproc swf-font-get-leading (font::<swf-font>) ::<float>
+  (result (SWFFont_getLeading (-> font h))))
+
+
