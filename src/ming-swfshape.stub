@@ -82,23 +82,42 @@
   (shape::<swf-shape> width::<ushort> r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<void>
   (SWFShape_setLine (-> shape h) width r g b a))
 
+(define-cproc swf-shape-set-line2-filled
+  (shape::<swf-shape> 
+   width::<ushort> 
+   fill::<swf-fill-style> flags::<int> miterLimit::<float>) ::<void>
+   (SWFShape_setLine2Filled (-> shape h) width (-> fill h) flags miterLimit))
+
 (define-cproc swf-shape-set-line2
   (shape::<swf-shape> 
    width::<ushort> r::<uint8> g::<uint8> b::<uint8> a::<uint8>
-   fill::<swf-fill-style> flags::<int> miterLimit::<float>) ::<void>
-   (SWFShape_setLine (-> shape h) width r g b a (-> fill h) flags miterLimit))
+   flags::<int> miterLimit::<float>) ::<void>
+   (SWFShape_setLine2 (-> shape h) width r g b a flags miterLimit))
 
 (define-cproc swf-shape-add-solid-fill-style
-  (shape::<swf-shape> r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<swf-fill>
-  (result SWFShape_addSolidFillStyle (-> shape h) r g b a))
+  (shape::<swf-shape> r::<uint8> g::<uint8> b::<uint8> a::<uint8>) ::<swf-fill-style>
+  (let* ((fill::ScmSWFFillStyle* (SCM_NEW ScmSWFFillStyle)))
+    (SCM_SET_CLASS fill SCM_CLASS_SWF_FILL_STYLE)
+    (set! (-> fill h) 
+	  (SWFShape_addSolidFillStyle (-> shape h) r g b a))
+    (result fill)))
 
-(define-cproc swf-shape-add-gradient-fill
-  (shape::<swf-shape> gradient::<swf-gradient> flags::<uint8>) ::<swf-fill>
-  (result (SWFShape_addGradientFill (-> shape h) (-> gradient h) flags)))
+(define-cproc swf-shape-add-gradient-fill-style
+  (shape::<swf-shape> gradient::<swf-gradient> flags::<uint8>) ::<swf-fill-style>
+  (let* ((fill::ScmSWFFillStyle* (SCM_NEW ScmSWFFillStyle)))
+    (SCM_SET_CLASS fill SCM_CLASS_SWF_FILL_STYLE)
+    (set! (-> fill h) 
+	  (SWFShape_addGradientFill (-> shape h) (-> gradient h)
+				    flags))
+    (result fill)))
 
-(define-cproc swf-shape-add-bitmap-fill
-  (shape::<swf-shape> bitmap::<swf-bitmap> flags::<uint8>) ::<swf-fill>
-  (result (SWFShape_addBitmapFill (-> shape h) (-> bitmap h) flags)))
+(define-cproc swf-shape-add-bitmap-fill-style
+  (shape::<swf-shape> bitmap::<swf-bitmap> flags::<uint8>) ::<swf-fill-style>
+  (let* ((fill::ScmSWFFillStyle* (SCM_NEW ScmSWFFillStyle)))
+    (SCM_SET_CLASS fill SCM_CLASS_SWF_FILL_STYLE)
+    (set! (-> fill h)
+	  (SWFShape_addBitmapFill (-> shape h) (-> bitmap h) flags))
+    (result fill)))
 
 (define-cproc swf-shape-set-left-fill
   (shape::<swf-shape> fill::<swf-fill>) ::<void>
