@@ -93,6 +93,7 @@
   [allocator
    (let* ([ctx::ScmSWFText* (SCM_ALLOCATE ScmSWFText klass)])
      (SCM_SET_CLASS ctx klass)
+     (set! (-> ctx h) (newSWFText))
      (return (SCM_OBJ ctx)))])
 
 (define-cclass <swf-display-item> :base "ScmSWFDisplayItem*" "Scm_SWFDisplayItemClass"
