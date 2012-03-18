@@ -136,20 +136,20 @@
   (shape::<swf-shape> r::<double>) ::<void>
   (SWFShape_drawCircle (-> shape h) r))
 
-/* draw character c from font font into shape shape at size size */
-(define-cprocswf-shape-draw-glyph
-  (shape::<swf-shape> font::<swf-font> c::<ushort>)
+;; draw character c from font font into shape shape at size size
+(define-cproc swf-shape-draw-glyph
+  (shape::<swf-shape> font::<swf-font> c::<ushort>) ::<void>
   (SWFShape_drawGlyph (-> shape h) (-> font h) c))
 
 (define-cproc swf-shape-draw-sized-glyph
   (shape::<swf-shape> font::<swf-font> c::<ushort> size::<int>) ::<void>
   (SWFShape_drawSizedGlyph (-> shape h) (-> font h) c size))
 
-  /* Deprecated: */
-  #define SWFShape_drawFontGlyph(s,f,c) SWFShape_drawGlyph(s,f,c)
+;;  /* Deprecated: */
+;;  #define SWFShape_drawFontGlyph(s,f,c) SWFShape_drawGlyph(s,f,c)
 
-/* approximate a cubic bezier with quadratic segments */
-/* returns the number of segments used */
+;; approximate a cubic bezier with quadratic segments
+;; returns the number of segments used
 (define-cproc swf-shape-draw-cubic
   (shape::<swf-shape>
    bx::<double> by::<double> cx::<double> cy::<double> dx::<double>
