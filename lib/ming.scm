@@ -4,8 +4,10 @@
 
 (define-module ming
   (extend 
+   ming.swffont
    ming.swfmovie
    ming.swfshape
+   ming.swftext
    )
   (export-all))
 (select-module ming)

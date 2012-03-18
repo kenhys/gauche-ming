@@ -52,15 +52,18 @@
 
 (define-cproc swf-movie-add
   (movie::<swf-movie> block) ::<swf-display-item>
-  (cond
-   ([SCM_SWF_SHAPE_P block]
-    (let* ((item::ScmSWFDisplayItem* (SCM_NEW ScmSWFDisplayItem)))
-      (SCM_SET_CLASS item SCM_CLASS_SWF_DISPLAY_ITEM)
-      (set! (-> item h) 
-	    (SWFMovie_add_internal (-> movie h) (cast SWFMovieBlockType (-> (SCM_SWF_SHAPE block) h))))
-      (result item)))
-   (else
-    (Scm_Error ""))))
+  (let* ((item::ScmSWFDisplayItem* (SCM_NEW ScmSWFDisplayItem)))
+    (SCM_SET_CLASS item SCM_CLASS_SWF_DISPLAY_ITEM)
+    (cond
+     ([SCM_SWF_SHAPE_P block]
+      (set! (-> item h)
+	    (SWFMovie_add_internal (-> movie h) (cast SWFMovieBlockType (-> (SCM_SWF_SHAPE block) h)))))
+     ([SCM_SWF_TEXT_P block]
+      (set! (-> item h)
+	    (SWFMovie_add_internal (-> movie h) (cast SWFMovieBlockType (-> (SCM_SWF_TEXT block) h)))))
+     (else
+      (Scm_Error "")))
+    (result item)))
 
 
 
