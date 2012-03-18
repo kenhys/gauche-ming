@@ -21,3 +21,51 @@
 
 (define-type <swf-character> "ScmSWFCharacter*" #f
   "SCM_SWF_CHARACTER_P" "SCM_SWF_CHARACTER")
+
+
+(define-type <swf-fill-style> "ScmSWFFillStyle*" #f
+  "SCM_SWF_FILL_STYLE_P" "SCM_SWF_FILL_STYLE")
+
+(define-type <swf-line-style> "ScmSWFLineStyle*" #f
+  "SCM_SWF_LINE_STYLE_P" "SCM_SWF_LINE_STYLE")
+
+(define-type <swf-fill> "ScmSWFFill*" #f
+  "SCM_SWF_FILL_P" "SCM_SWF_FILL")
+
+(define-type <swf-sprite> "ScmSWFSprite*" #f
+  "SCM_SWF_SPRITE_P" "SCM_SWF_SPRITE")
+
+(define-type <swf-morph> "ScmSWFMorph*" #f
+  "SCM_SWF_MORPH_P" "SCM_SWF_MORPH")
+
+(define-type <swf-action> "ScmSWFAction*" #f
+  "SCM_SWF_ACTION_P" "SCM_SWF_ACTION")
+
+(define-type <swf-buton> "ScmSWFButton*" #f
+  "SCM_SWF_BUTTON_P" "SCM_SWF_BUTTON")
+
+(define-type <swf-movie-block-type> "ScmSWFMovieBlockType*" #f
+  "SCM_SWF_MOVIE_BLOCK_TYPE_P" "SCM_SWF_MOVIE_BLOCK_TYPE")
+
+(define-type <swf-movie-clip> "ScmSWFMovieClip*" #f
+  "SCM_SWF_MOVIE_CLIP_P" "SCM_SWF_MOVIE_CLIP")
+
+(define-type <swf-sound> "ScmSWFSound*" #f
+  "SCM_SWF_SOUND_P" "SCM_SWF_SOUND")
+
+(define-type <swf-text-field> "ScmSWFTexField*" #f
+  "SCM_SWF_TEXT_FIELD_P" "SCM_SWF_TEXT_FIELD")
+
+(define-type <swf-video> "ScmSWFVideo*" #f
+  "SCM_SWF_VIDEO_P" "SCM_SWF_VIDEO")
+
+(define-type <swf-gradient> "ScmSWFGradient*" #f
+  "SCM_SWF_GRADIENT_P" "SCM_SWF_GRADIENT")
+
+(define-type <swf-matrix> "ScmSWFMatrix*" #f
+  "SCM_SWF_MATRIX_P" "SCM_SWF_MATRIX")
+
+(define-type <swf-bitmap> "ScmSWFBitmap*" #f
+  "SCM_SWF_BITMAP_P" "SCM_SWF_BITMAP")
+
+

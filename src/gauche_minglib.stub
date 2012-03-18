@@ -13,11 +13,11 @@
 (define-cproc test-gauche_ming () ::<const-cstring>
   (result "gauche_ming is working"))
 
-(define-cclass <swf-movie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
+(define-cclass <swf-bitmap> :base "ScmSWFBitmap*" "Scm_SWFBitmapClass"
   ()
   ()
   [allocator
-   (let* ([ctx::ScmSWFMovie* (SCM_ALLOCATE ScmSWFMovie klass)])
+   (let* ([ctx::ScmSWFBitmap* (SCM_ALLOCATE ScmSWFBitmap klass)])
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
 
@@ -27,6 +27,7 @@
   [allocator
    (let* ([ctx::ScmSWFShape* (SCM_ALLOCATE ScmSWFShape klass)])
      (SCM_SET_CLASS ctx klass)
+     (set! (-> ctx h) (newSWFShape))
      (return (SCM_OBJ ctx)))])
 
 (define-cclass <swf-font> :base "ScmSWFFont*" "Scm_SWFFontClass"
@@ -34,6 +35,55 @@
   ()
   [allocator
    (let* ([ctx::ScmSWFFont* (SCM_ALLOCATE ScmSWFFont klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-fill> :base "ScmSWFFill*" "Scm_SWFFillClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFFill* (SCM_ALLOCATE ScmSWFFill klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-fill-style> :base "ScmSWFFillStyle*" "Scm_SWFFillStyleClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFFillStyle* (SCM_ALLOCATE ScmSWFFillStyle klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-line-style> :base "ScmSWFLineStyle*" "Scm_SWFLineStyleClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFLineStyle* (SCM_ALLOCATE ScmSWFLineStyle klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-gradient> :base "ScmSWFGradient*" "Scm_SWFGradientClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFGradient* (SCM_ALLOCATE ScmSWFGradient klass)])
+     (SCM_SET_CLASS ctx klass)
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-movie> :base "ScmSWFMovie*" "Scm_SWFMovieClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFMovie* (SCM_ALLOCATE ScmSWFMovie klass)])
+     (SCM_SET_CLASS ctx klass)
+     (set! (-> ctx h) (newSWFMovie))
+     (return (SCM_OBJ ctx)))])
+
+(define-cclass <swf-movie-block-type> :base "ScmSWFMovieBlockType*" "Scm_SWFMovieBlockTypeClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFMovieBlockType* (SCM_ALLOCATE ScmSWFMovieBlockType klass)])
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
 
