@@ -7,23 +7,66 @@
 
 (include "gauche-ming.types")
 
-(define-cproc new-swf-font-from-file (filename::<const-cstring>) ::<swf-font>
-  (let* ((font::ScmSWFFont* (SCM_NEW ScmSWFFont)))
-    (SCM_SET_CLASS font SCM_CLASS_SWF_FONT)
-    (set! (-> font h) (newSWFFont_fromFile filename))
-    (result font)))
+(define-cproc new-swf-fill (style::<swf-fill-style>) ::<swf-fill>
+  (let* ((fill::ScmSWFFill* (SCM_NEW ScmSWFFill)))
+    (SCM_SET_CLASS fill SCM_CLASS_SWF_FILL)
+    (set! (-> fill h) (newSWFFill (-> style h)))
+    (result fill)))
 
-(define-cproc destroy-swf-font (font::<swf-font>) ::<void>
-  (destroySWFFont (-> font h)))
+(define-cproc destroy-swf-fill (fill::<swf-fill>) ::<void>
+  (destroySWFFill (-> fill h)))
 
+(define-cproc swf-fill-get-fill-style (fill::<swf-fill>) ::<swf-fill-style>
+  (let* ((style::ScmSWFFillStyle* (SCM_NEW ScmSWFFillStyle)))
+    (SCM_SET_CLASS style SCM_CLASS_SWF_FILL_STYLE)
+    (set! (-> style h) (SWFFill_getFillStyle (-> fill h)))
+    (result style)))
 
-(define-cproc swf-font-get-ascent (font::<swf-font>) ::<float>
-  (result (SWFFont_getAscent (-> font h))))
+(define-cproc swf-fill-skew-x (fill::<swf-fill> x::<float>) ::<void>
+  (SWFFill_skewX (-> fill h) x))
 
-(define-cproc swf-font-get-descent (font::<swf-font>) ::<float>
-  (result (SWFFont_getDescent (-> font h))))
+(define-cproc swf-fill-skew-x-to (fill::<swf-fill> x::<float>) ::<void>
+  (SWFFill_skewXTo (-> fill h) x))
 
-(define-cproc swf-font-get-leading (font::<swf-font>) ::<float>
-  (result (SWFFont_getLeading (-> font h))))
+(define-cproc swf-fill-skew-y (fill::<swf-fill> y::<float>) ::<void>
+  (SWFFill_skewY (-> fill h) y))
+
+(define-cproc swf-fill-skew-y-to (fill::<swf-fill> y::<float>) ::<void>
+  (SWFFill_skewYTo (-> fill h) y))
+
+(define-cproc swf-fill-scale-x (fill::<swf-fill> x::<float>) ::<void>
+  (SWFFill_scaleX (-> fill h) x))
+
+(define-cproc swf-fill-scale-x-to (fill::<swf-fill> x::<float>) ::<void>
+  (SWFFill_scaleXTo (-> fill h) x))
+
+(define-cproc swf-fill-scale-y (fill::<swf-fill> y::<float>) ::<void>
+  (SWFFill_scaleY (-> fill h) y))
+
+(define-cproc swf-fill-scale-y-to (fill::<swf-fill> y::<float>) ::<void>
+  (SWFFill_scaleYTo (-> fill h) y))
+
+(define-cproc swf-fill-scale-xy (fill::<swf-fill> x::<float> y::<float>) ::<void>
+  (SWFFill_scaleXYTo (-> fill h) x y))
+
+(define-cproc swf-fill-scale-xy-to (fill::<swf-fill> x::<float> y::<float>) ::<void>
+  (SWFFill_scaleXYTo (-> fill h) x y))
+
+(define-cproc swf-fill-rotate (fill::<swf-fill> degrees::<float>) ::<void>
+  (SWFFill_rotate (-> fill h) degrees))
+
+(define-cproc swf-fill-rotate-to (fill::<swf-fill> degrees::<float>) ::<void>
+  (SWFFill_rotateTo (-> fill h) degrees))
+
+(define-cproc swf-fill-move (fill::<swf-fill> x::<float> y::<float>) ::<void>
+  (SWFFill_move (-> fill h) x y))
+
+(define-cproc swf-fill-move-to (fill::<swf-fill> x::<float> y::<float>) ::<void>
+  (SWFFill_moveTo (-> fill h) x y))
+
+(define-cproc swf-fill-set-matrix 
+  (fill::<swf-fill>
+   a::<float> b::<float> c::<float> d::<float> x::<float> y::<float>) ::<void>
+   (SWFFill_setMatrix (-> fill h) a b c d x y))
 
 
