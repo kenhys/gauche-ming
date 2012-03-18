@@ -5,6 +5,7 @@
 (define-module ming
   (extend 
    ming.swfmovie
+   ming.swfshape
    )
   (export-all))
 (select-module ming)
