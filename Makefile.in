@@ -47,6 +47,9 @@ check : all
 	@rm -f test.log
 	cd test
 
+demo:
+	cd examples; $(MAKE) demo
+
 install : all
 	$(INSTALL) -m 444 -T $(GAUCHE_PKGINCDIR) $(HEADERS)
 	$(INSTALL) -m 444 -T $(GAUCHE_PKGLIBDIR) $(SCMFILES) 
