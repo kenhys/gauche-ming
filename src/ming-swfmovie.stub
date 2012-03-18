@@ -42,9 +42,53 @@
 (define-cproc swf-movie-set-background (movie::<swf-movie> r::<real> g::<real> b::<real>) ::<void>
   (SWFMovie_setBackground (-> movie h) r g b))
 
+
+
+(define-cproc swf-movie-add-internal
+  (movie::<swf-movie> ublock::<swf-movie-block-type>) ::<swf-display-item>
+  (let* ((item::ScmSWFDisplayItem* (SCM_NEW ScmSWFDisplayItem)))
+    (SCM_SET_CLASS item SCM_CLASS_SWF_DISPLAY_ITEM)
+    (set! (-> item h) (SWFMovie_add_internal (-> movie h) (* (-> ublock h))))))
+
+(define-cproc swf-movie-add
+  (movie::<swf-movie> block) ::<swf-display-item>
+  (cond
+   ([SCM_SWF_SHAPE_P block]
+    (let* ((item::ScmSWFDisplayItem* (SCM_NEW ScmSWFDisplayItem)))
+      (SCM_SET_CLASS item SCM_CLASS_SWF_DISPLAY_ITEM)
+      (set! (-> item h) 
+	    (SWFMovie_add_internal (-> movie h) (cast SWFMovieBlockType (-> (SCM_SWF_SHAPE block) h))))
+      (result item)))
+   (else
+    (Scm_Error ""))))
+
+
+
 (define-cproc swf-movie-next-frame (movie::<swf-movie>) ::<void>
   (SWFMovie_nextFrame (-> movie h)))
+
+(define-cproc swf-movie-label-frame
+  (movie::<swf-movie> label::<const-cstring>) ::<void>
+  (SWFMovie_labelFrame (-> movie h) label))
+
+(define-cproc swf-movie-name-anchor 
+  (movie::<swf-movie> label::<const-cstring>) ::<void>
+  (SWFMovie_namedAnchor (-> movie h) label))
+
+;; (define-cproc swf-movie-output
+;;   (movie::<swf-movie> method::<swf-byte-output-method> data) ::<int>
+;;   (result (SWFMovie_output (-> movie h) method data)))
 
 
 (define-cproc swf-movie-save (movie::<swf-movie> filename::<const-cstring>) ::<fixnum>
   (result (SWFMovie_save (-> movie h) filename)))
+
+;; int SWFMovie_output_to_stream(SWFMovie movie, FILE *fp);
+;; void SWFMovie_protect(SWFMovie movie, const char *password);
+;; void SWFMovie_setNetworkAccess(SWFMovie movie, int flag);
+;; void SWFMovie_addMetadata(SWFMovie movie, const char *xml);
+;; void SWFMovie_setScriptLimits(SWFMovie movie, int maxRecursion, int timeout);
+;; void SWFMovie_setTabIndex(SWFMovie movie, int depth, int index);
+;; SWFCharacter SWFMovie_importCharacter(SWFMovie movie, const char *filename, const char *name);
+
+
