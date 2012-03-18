@@ -6,7 +6,7 @@
   (extend ming)
   (export-all)
   )
-(select-module ming.swfshape)
+(select-module ming.swffill)
 
 ;; Loads extension
 (dynamic-load "gauche--ming" :init-function "Scm_Init_gauche_ming")
@@ -40,5 +40,5 @@
 
 ;;
 ;; Epilogue
-(provide "ming/swfshape")
+(provide "ming/swffill")
 
