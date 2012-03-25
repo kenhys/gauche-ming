@@ -8,6 +8,7 @@
    ming.swffont
    ming.swfmovie
    ming.swfshape
+   ming.swfsprite
    ming.swftext
    )
   (export-all))
