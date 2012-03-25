@@ -4,6 +4,7 @@
 
 (define-module ming
   (extend 
+   ming.swfdisplayitem
    ming.swffont
    ming.swfmovie
    ming.swfshape
