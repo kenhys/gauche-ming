@@ -20,7 +20,10 @@
   (item::<swf-display-item> x::<real> y::<real>) ::<void>
   (SWFDisplayItem_move (-> item h) x y))
 
-;; void SWFDisplayItem_moveTo(SWFDisplayItem item, double x, double y);
+(define-cproc swf-display-item-move-to
+  (item::<swf-display-item> x::<double> y::<double>)
+  (SWFDisplayItem_moveTo (-> item h) x y))
+
 ;; void SWFDisplayItem_rotate(SWFDisplayItem item, double degrees);
 ;; void SWFDisplayItem_rotateTo(SWFDisplayItem item, double degrees);
 ;; void SWFDisplayItem_scale(SWFDisplayItem item, double xScale, double yScale);
