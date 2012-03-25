@@ -66,6 +66,10 @@
   ((self <swf-shape>) width r g b a flags miterLimit)
   (swf-shape-set-line2-filled shape width r g b a flags miterLimit))
 
+(define-method add-fill
+  ((self <swf-shape>) r g b :optional (a 255))
+  (swf-shape-add-solid-fill-style self r g b a))
+
 (define-method add-solid-fill-style
   ((self <swf-shape>) r g b :optional (a 255))
   (swf-shape-add-solid-fill-style self r g b a))
