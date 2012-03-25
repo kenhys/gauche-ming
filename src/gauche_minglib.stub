@@ -87,6 +87,15 @@
      (SCM_SET_CLASS ctx klass)
      (return (SCM_OBJ ctx)))])
 
+(define-cclass <swf-sprite> :base "ScmSWFSprite*" "Scm_SWFSpriteClass"
+  ()
+  ()
+  [allocator
+   (let* ([ctx::ScmSWFSprite* (SCM_ALLOCATE ScmSWFSprite klass)])
+     (SCM_SET_CLASS ctx klass)
+     (set! (-> ctx h) (newSWFSprite))
+     (return (SCM_OBJ ctx)))])
+
 (define-cclass <swf-text> :base "ScmSWFText*" "Scm_SWFTextClass"
   ()
   ()

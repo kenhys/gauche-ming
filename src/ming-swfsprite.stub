@@ -7,23 +7,22 @@
 
 (include "gauche-ming.types")
 
-(define-cproc new-swf-font-from-file (filename::<const-cstring>) ::<swf-font>
-  (let* ((font::ScmSWFFont* (SCM_NEW ScmSWFFont)))
-    (SCM_SET_CLASS font SCM_CLASS_SWF_FONT)
-    (set! (-> font h) (newSWFFont_fromFile filename))
-    (result font)))
+(define-cproc new-swf-sprite () ::<swf-sprite>
+  (let* ((sprite::ScmSWFSprite* (SCM_NEW ScmSWFSprite)))
+    (SCM_SET_CLASS sprite SCM_CLASS_SWF_SPRITE)
+    (set! (-> sprite h) (newSWFSprite))
+    (result sprite)))
 
-(define-cproc destroy-swf-font (font::<swf-font>) ::<void>
-  (destroySWFFont (-> font h)))
+(define-cproc destroy-swf-sprite (sprite::<swf-sprite>) ::<void>
+  (destroySWFSprite (-> sprite h)))
 
-
-(define-cproc swf-font-get-ascent (font::<swf-font>) ::<float>
-  (result (SWFFont_getAscent (-> font h))))
-
-(define-cproc swf-font-get-descent (font::<swf-font>) ::<float>
-  (result (SWFFont_getDescent (-> font h))))
-
-(define-cproc swf-font-get-leading (font::<swf-font>) ::<float>
-  (result (SWFFont_getLeading (-> font h))))
-
-
+(define-cproc swf-sprite-add-block
+  (self::<swf-sprite> block) ::<void>
+  (let* ()
+    (cond
+     ([SCM_SWF_SHAPE_P block]
+      (SWFSprite_addBlock (-> self h) (cast SWFBlock (-> (SCM_SWF_SHAPE block) h))))
+     ([SCM_SWF_TEXT_P block]
+      (SWFSprite_addBlock (-> self h) (cast SWFBlock (-> (SCM_SWF_TEXT block) h))))
+     (else
+      (Scm_Error "")))))

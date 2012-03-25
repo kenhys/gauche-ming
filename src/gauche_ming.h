@@ -123,6 +123,16 @@ SCM_CLASS_DECL(Scm_SWFShapeClass);
 #define SCM_SWF_SHAPE(obj) ((ScmSWFShape*)(obj))
 #define SCM_SWF_SHAPE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_SHAPE))
 
+typedef struct ScmSWFSpriteRec {
+SCM_HEADER;
+SWFSprite h;
+} ScmSWFSprite;
+
+SCM_CLASS_DECL(Scm_SWFSpriteClass);
+#define SCM_CLASS_SWF_SPRITE (&Scm_SWFSpriteClass)
+#define SCM_SWF_SPRITE(obj) ((ScmSWFSprite*)(obj))
+#define SCM_SWF_SPRITE_P(obj) (SCM_XTYPEP(obj, SCM_CLASS_SWF_SPRITE))
+
 typedef struct ScmSWFTextRec {
 SCM_HEADER;
 SWFText h;
